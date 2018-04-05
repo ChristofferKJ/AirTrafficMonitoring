@@ -43,7 +43,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConvertStringToDateTime.cs" />
     <Compile Include="ConvertTrackData.cs" />
+    <Compile Include="DisplayTrack.cs" />
     <Compile Include="Track.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

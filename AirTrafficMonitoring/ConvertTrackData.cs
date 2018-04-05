@@ -8,27 +8,31 @@ namespace AirTrafficMonitoring
 {
     public class ConvertTrackData
     {
-        private Track myTrack;
+        private Track _myTrack;
+        private ConvertStringToDateTime _convertStringToDateTime;
 
         public Track ConvertData(string trackData)
         {
+            _convertStringToDateTime = new ConvertStringToDateTime();
+
             string[] array = trackData.Split(';');
 
-            myTrack = new Track();
+            _myTrack = new Track();
 
-            myTrack.Tag = array[0];
-            myTrack.XCoordinate = Convert.ToInt32(array[1]);
-            myTrack.YCoordinate = Convert.ToInt32(array[2]);
-            myTrack.Altitude = Convert.ToInt32(array[3]);
-            //myTrack.Timestamp = Convert.ToDateTime(array[4]);
-
-            return myTrack;
+            _myTrack.Tag = array[0];
+            _myTrack.XCoordinate = Convert.ToInt32(array[1]);
+            _myTrack.YCoordinate = Convert.ToInt32(array[2]);
+            _myTrack.Altitude = Convert.ToInt32(array[3]);
+            _myTrack.Timestamp = _convertStringToDateTime.ConvertToDateTime(array[4]);
+            
+            return _myTrack;
         }
 
         public override string ToString()
         {
-            return "Tag: " + myTrack.Tag + "\nX Coordinate: " + myTrack.XCoordinate + "\nY Coordinate: " +
-                   myTrack.YCoordinate + "\nAltitude: " + myTrack.Altitude + "\nTimestamp: "; //+ myTrack.Timestamp;
+            return "Tag: " + _myTrack.Tag + "\nX Coordinate: " + _myTrack.XCoordinate + "\nY Coordinate: " +
+                   _myTrack.YCoordinate + "\nAltitude: " + _myTrack.Altitude + "\nTimestamp: " +
+                   _myTrack.Timestamp; //+ "." + _myTrack.Timestamp.Millisecond;
         }
     }
 }

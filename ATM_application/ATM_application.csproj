@@ -51,5 +51,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AirTrafficMonitoring\AirTrafficMonitoring.csproj">
+      <Project>{3b6be1f2-9ff1-4b01-b85a-2eef29fd6f4f}</Project>
+      <Name>AirTrafficMonitoring</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

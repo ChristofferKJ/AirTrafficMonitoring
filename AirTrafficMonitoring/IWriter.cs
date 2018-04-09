@@ -8,6 +8,6 @@ namespace AirTrafficMonitoring
 {
    public interface IWriter
     {
-        void WriteTrack(ConvertTrackData track); 
+        void WriteTrack(Track track); 
     }
 }

@@ -12,9 +12,9 @@ namespace ATM_application
     {
         static void Main(string[] args)
         {
-            IWriter _writer = new ConsoleWriter();
+            IWriter writer = new ConsoleWriter();
             var myReciever = TransponderReceiverFactory.CreateTransponderDataReceiver();    
-            DisplayTrack myDisplayTrack = new DisplayTrack(myReciever, _writer);
+            DisplayTrack myDisplayTrack = new DisplayTrack(myReciever, writer);
          
             Console.ReadKey();
         }

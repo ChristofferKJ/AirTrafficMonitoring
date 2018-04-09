@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AitTrafficMonitoring.Test.Unit
+namespace AirTrafficMonitoring
 {
-    public class Class1
+   public interface IWriter
     {
+        void WriteTrack(ConvertTrackData track); 
     }
 }

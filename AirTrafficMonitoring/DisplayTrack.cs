@@ -10,13 +10,13 @@ namespace AirTrafficMonitoring
     public  class DisplayTrack
     {
         private ITransponderReceiver _myReciever;
+        private IWriter _Writer; 
 
-        public void DisplayTrackData()
+        public DisplayTrack(ITransponderReceiver myReciever, IWriter Writer)
         {
-
-           _myReciever = TransponderReceiverFactory.CreateTransponderDataReceiver();
-
-            _myReciever.TransponderDataReady += _myReciever_TransponderDataReady;
+            _myReciever = myReciever;
+            _Writer = Writer; 
+            _myReciever.TransponderDataReady += _myReciever_TransponderDataReady; 
         }
 
         private void _myReciever_TransponderDataReady(object sender, RawTransponderDataEventArgs e)
@@ -26,9 +26,7 @@ namespace AirTrafficMonitoring
 
             for (int i = 0; i < myList.Count; i++)
             {
-                Console.WriteLine(myList[i]);
-                convertTrackData.ConvertData(myList[i]);
-                Console.WriteLine(convertTrackData.ToString());
+                _Writer.WriteTrack(convertTrackData);  
             }
         }
     }

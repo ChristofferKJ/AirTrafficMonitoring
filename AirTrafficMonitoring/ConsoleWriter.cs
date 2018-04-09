@@ -8,9 +8,10 @@ namespace AirTrafficMonitoring
 {
    public class ConsoleWriter: IWriter
     {
-        public void WriteTrack(Track track)
+      
+        public void WriteTrack(ConvertTrackData track)
         {
-            
+          Console.WriteLine(track.ToString());   
         }
     }
 }

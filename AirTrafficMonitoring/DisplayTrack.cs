@@ -26,10 +26,7 @@ namespace AirTrafficMonitoring
 
             for (int i = 0; i < myList.Count; i++)
             {
-                _Writer.WriteTrack;
-                Console.WriteLine(myList[i]);
-                convertTrackData.ConvertData(myList[i]);
-                Console.WriteLine(convertTrackData.ToString());
+                _Writer.WriteTrack(convertTrackData);  
             }
         }
     }

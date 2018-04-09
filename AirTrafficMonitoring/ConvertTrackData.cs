@@ -32,7 +32,7 @@ namespace AirTrafficMonitoring
         {
             return "Tag: " + _myTrack.Tag + "\nX Coordinate: " + _myTrack.XCoordinate + "\nY Coordinate: " +
                    _myTrack.YCoordinate + "\nAltitude: " + _myTrack.Altitude + "\nTimestamp: " +
-                   _myTrack.Timestamp; //+ "." + _myTrack.Timestamp.Millisecond;
+                   _myTrack.Timestamp + "." + _myTrack.Timestamp.Millisecond + "\n";
         }
     }
 }

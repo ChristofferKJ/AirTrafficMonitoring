@@ -26,7 +26,7 @@ namespace AirTrafficMonitoring
             var millisecond = Convert.ToInt32(dateString.Substring(14, 3));
 
            // _dt = new DateTime(year,month,day,hour,minute,second,millisecond);
-            _dt = DateTime.ParseExact($"{year}/{month}/{day} {hour}:{minute}:{second}:{millisecond}", "yy/MM/dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
+            _dt = DateTime.ParseExact($"{year}-{month}-{day} {hour}:{minute}:{second}:{millisecond}", "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
             return _dt;
         }
     }

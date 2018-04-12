@@ -22,5 +22,10 @@ namespace AirTrafficMonitoring
                    Timestamp + "." + Timestamp.Millisecond + "\n";
         }
 
+        public string ToStringLog()
+        {
+            return "Tag: " + Tag + "\nTimestamp: " + Timestamp + "." + Timestamp.Millisecond + "\n";
+        }
+
     }
 }

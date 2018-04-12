@@ -43,11 +43,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalculateCourse.cs" />
+    <Compile Include="CalculateVelocity.cs" />
     <Compile Include="ConsoleWriter.cs" />
     <Compile Include="ConvertStringToDateTime.cs" />
     <Compile Include="ConvertTrackData.cs" />
     <Compile Include="DisplayTrack.cs" />
+    <Compile Include="ILogWriter.cs" />
     <Compile Include="IWriter.cs" />
+    <Compile Include="LogWriter.cs" />
+    <Compile Include="SeperationEvent.cs" />
     <Compile Include="Track.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

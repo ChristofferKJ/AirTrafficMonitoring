@@ -14,7 +14,7 @@ namespace AirTrafficMonitoring
         public DisplayTrack(ITransponderReceiver myReciever, IWriter writer)
         {
             _writer = writer; 
-            myReciever.TransponderDataReady += _myReciever_TransponderDataReady; 
+            myReciever.TransponderDataReady += _myReciever_TransponderDataReady;
         }
 
         private void _myReciever_TransponderDataReady(object sender, RawTransponderDataEventArgs e)

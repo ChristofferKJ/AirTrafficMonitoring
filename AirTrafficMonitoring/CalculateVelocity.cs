@@ -8,27 +8,25 @@ namespace AirTrafficMonitoring
 {
     public class CalculateVelocity : ICalculateVelocity
     {
-        private readonly List<Track> _trackList = new List<Track>();
+        //private readonly List<Track> _trackList = new List<Track>();
 
-        public void CalcVelocity(Track track)
+        public void CalcVelocity(List<ITrack> trackList)
         {
-            _trackList.Add(track);
-
-            if (_trackList.Count == 2 && _trackList[0].Tag == _trackList[1].Tag)
+            //if (trackList.Count == 2)
             {
-                double xCoordinate0 = _trackList[0].XCoordinate;
-                double xCoordinate1 = _trackList[1].XCoordinate;
-                double yCoordinate0 = _trackList[0].YCoordinate;
-                double yCoordinate1 = _trackList[1].YCoordinate;
+                double xCoordinate0 = trackList[0].XCoordinate;
+                double xCoordinate1 = trackList[1].XCoordinate;
+                double yCoordinate0 = trackList[0].YCoordinate;
+                double yCoordinate1 = trackList[1].YCoordinate;
 
                 double distance = Math.Sqrt(Math.Pow(xCoordinate0 - xCoordinate1, 2) +
                          Math.Pow(yCoordinate0 - yCoordinate1, 2));
 
-                double timedifference = _trackList[1].Timestamp.Subtract(_trackList[0].Timestamp).TotalSeconds;
+                double timedifference = trackList[1].Timestamp.Subtract(trackList[0].Timestamp).TotalSeconds;
 
-                track.Velocity = distance / timedifference;
+                trackList[1].Velocity = distance / timedifference;
 
-                _trackList.RemoveAt(0);
+                trackList.RemoveAt(0);
             }
         }
     }

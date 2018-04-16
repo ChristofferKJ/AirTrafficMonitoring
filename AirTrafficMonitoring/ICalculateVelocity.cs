@@ -1,7 +1,9 @@
-﻿namespace AirTrafficMonitoring
+﻿using System.Collections.Generic;
+
+namespace AirTrafficMonitoring
 {
     public interface ICalculateVelocity
     {
-        void CalcVelocity(Track track);
+        void CalcVelocity(List<ITrack> trackList);
     }
 }

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace AirTrafficMonitoring
 {
-   public interface IWriter
+    public class TrackEventArgs : EventArgs
     {
-        void WriteTrack(ITrack track); 
+        public ITrack ITrack { get; set; }
     }
 }

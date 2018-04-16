@@ -2,6 +2,6 @@
 {
     public interface ICalculateCourse
     {
-        void CalcCourse(Track track);
+        void CalcCourse(ITrack track);
     }
 }

@@ -7,7 +7,7 @@ using TransponderReceiver;
 
 namespace AirTrafficMonitoring
 {
-    public class Track
+    public class Track : ITrack
     {
         public string Tag { get; set; }
         public int XCoordinate { get; set; }

@@ -8,7 +8,7 @@ namespace AirTrafficMonitoring
 {
     public class FilterAirspace : IFilterAirspace
     {
-        public bool FilterTrack(Track track)
+        public bool FilterTrack(ITrack track)
         {
             return !(track.XCoordinate > 90000 || track.XCoordinate < 10000 || track.YCoordinate < 10000 || track.YCoordinate > 90000 || track.Altitude < 500 || track.Altitude > 20000);
         }

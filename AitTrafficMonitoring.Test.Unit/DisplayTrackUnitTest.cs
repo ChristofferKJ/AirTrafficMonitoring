@@ -14,7 +14,7 @@ namespace AitTrafficMonitoring.Test.Unit
     public class DisplayTrackUnitTest
     {
         private ITransponderReceiver _transponderReceiver;
-        private DisplayTrack _uut;
+        private Controller _uut;
         private IWriter _writer;
 
         [SetUp]
@@ -22,7 +22,7 @@ namespace AitTrafficMonitoring.Test.Unit
         {
             _writer = Substitute.For<IWriter>();
             _transponderReceiver = Substitute.For<ITransponderReceiver>(); 
-            _uut = new DisplayTrack(_transponderReceiver,_writer);
+            _uut = new Controller(_transponderReceiver,_writer);
 
             var track = "BIJ515;12345;54321;67891;20180409153742853";
             List<string> myList = new List<string>();

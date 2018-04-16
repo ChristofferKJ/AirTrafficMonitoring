@@ -48,7 +48,11 @@
     <Compile Include="ConsoleWriter.cs" />
     <Compile Include="ConvertStringToDateTime.cs" />
     <Compile Include="ConvertTrackData.cs" />
-    <Compile Include="DisplayTrack.cs" />
+    <Compile Include="Controller.cs" />
+    <Compile Include="FilterAirspace.cs" />
+    <Compile Include="ICalculateCourse.cs" />
+    <Compile Include="ICalculateVelocity.cs" />
+    <Compile Include="IFilterAirspace.cs" />
     <Compile Include="ILogWriter.cs" />
     <Compile Include="IWriter.cs" />
     <Compile Include="LogWriter.cs" />

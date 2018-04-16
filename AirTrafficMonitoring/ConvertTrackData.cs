@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AirTrafficMonitoring
 {
-    public class ConvertTrackData
+    public class ConvertTrackData : IConvertTrackData
     {
         private readonly Track _myTrack;
         private ConvertStringToDateTime _convertStringToDateTime;

@@ -8,9 +8,9 @@ namespace AirTrafficMonitoring
 {
     public class CalculateCourse : ICalculateCourse
     {
-        private readonly List<Track> _trackList = new List<Track>();
+        private readonly List<ITrack> _trackList = new List<ITrack>();
 
-        public void CalcCourse(Track track)
+        public void CalcCourse(ITrack track)
         {
             _trackList.Add(track);
 

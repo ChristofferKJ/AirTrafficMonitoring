@@ -2,6 +2,6 @@
 {
     public interface IFilterAirspace
     {
-        bool FilterTrack(Track track);
+        bool FilterTrack(ITrack track);
     }
 }

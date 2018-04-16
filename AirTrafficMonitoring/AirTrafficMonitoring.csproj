@@ -52,13 +52,18 @@
     <Compile Include="FilterAirspace.cs" />
     <Compile Include="ICalculateCourse.cs" />
     <Compile Include="ICalculateVelocity.cs" />
+    <Compile Include="IConvertTrackData.cs" />
     <Compile Include="IFilterAirspace.cs" />
     <Compile Include="ILogWriter.cs" />
+    <Compile Include="ISortingTracks.cs" />
+    <Compile Include="ITrack.cs" />
     <Compile Include="IWriter.cs" />
     <Compile Include="LogWriter.cs" />
     <Compile Include="SeperationEvent.cs" />
+    <Compile Include="SortingTracks.cs" />
     <Compile Include="Track.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TrackEventArgs.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,6 +8,6 @@ namespace AirTrafficMonitoring
 {
     interface ILogWriter
     {
-        void LogEventToFile(Track track1, Track track2);
+        void LogEventToFile(ITrack track1, ITrack track2);
     }
 }

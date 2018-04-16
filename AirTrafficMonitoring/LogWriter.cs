@@ -8,7 +8,7 @@ namespace AirTrafficMonitoring
 {
     class LogWriter : ILogWriter
     {
-        public void LogEventToFile(Track track1, Track track2)
+        public void LogEventToFile(ITrack track1, ITrack track2)
         {
             track1.ToStringLog();
             track2.ToStringLog();

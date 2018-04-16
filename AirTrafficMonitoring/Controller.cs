@@ -9,34 +9,38 @@ namespace AirTrafficMonitoring
 {
     public  class Controller
     {
+        private readonly ITrack _track;
+        private readonly IConvertTrackData _convertTrackData;
         private readonly IWriter _writer;
-        private readonly ICalculateVelocity _calculateVelocity;
         private readonly ICalculateCourse _calculateCourse;
-        private IFilterAirspace _filterAirspace;
+        private readonly IFilterAirspace _filterAirspace;
+        private readonly ISortingTracks _sortingTracks;
+        public event EventHandler<TrackEventArgs> _sortTracksInAirspace;
 
-        public Controller(ITransponderReceiver myReciever, IWriter writer, ICalculateVelocity calculateVelocity, ICalculateCourse calculateCourse,IFilterAirspace filterAirspace)
+        public Controller(ITransponderReceiver myReciever, ITrack track, IConvertTrackData convertTrackData, IWriter writer, ICalculateCourse calculateCourse,IFilterAirspace filterAirspace, ISortingTracks sortingTracks)
         {
+            _track = track;
+            _convertTrackData = convertTrackData;
             _writer = writer;
-            _calculateVelocity = calculateVelocity;
             _calculateCourse = calculateCourse;
             _filterAirspace = filterAirspace;
+            _sortingTracks = sortingTracks;
+            _sortTracksInAirspace += sortingTracks.SortTracksInAirspace; // Svarer til Attach()
             myReciever.TransponderDataReady += _myReciever_TransponderDataReady;
         }
 
         private void _myReciever_TransponderDataReady(object sender, RawTransponderDataEventArgs e)
         {
-            var myTrack = new Track();
-            ConvertTrackData convertTrackData = new ConvertTrackData(myTrack);
             var myList = e.TransponderData;
 
                 for (int i = 0; i < myList.Count; i++)
                 {
-                    convertTrackData.ConvertData(myList[i]);
-                    if (_filterAirspace.FilterTrack(myTrack))
+                    _convertTrackData.ConvertData(myList[i]);
+                    if (_filterAirspace.FilterTrack(_track))
                     {
-                        _calculateVelocity.CalcVelocity(myTrack);
-                        _calculateCourse.CalcCourse(myTrack);
-                        _writer.WriteTrack(myTrack);
+                        _sortTracksInAirspace?.Invoke(this,new TrackEventArgs() {ITrack = _track});
+                        _calculateCourse.CalcCourse(_track);
+                        _writer.WriteTrack(_track);
                     }
                 }
         }

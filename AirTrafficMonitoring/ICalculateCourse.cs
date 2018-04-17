@@ -1,7 +1,9 @@
-﻿namespace AirTrafficMonitoring
+﻿using System.Collections.Generic;
+
+namespace AirTrafficMonitoring
 {
     public interface ICalculateCourse
     {
-        void CalcCourse(ITrack track);
+        void CalcCourse(List<ITrack> _trackList);
     }
 }

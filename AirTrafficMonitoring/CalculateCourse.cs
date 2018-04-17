@@ -8,37 +8,15 @@ namespace AirTrafficMonitoring
 {
     public class CalculateCourse : ICalculateCourse
     {
-        private readonly List<ITrack> _trackList = new List<ITrack>();
 
-        public void CalcCourse(ITrack track)
+        public void CalcCourse(List<ITrack> trackList)
         {
-            _trackList.Add(track);
+           double deltaXCoordinate = trackList[1].XCoordinate - trackList[0].XCoordinate;
+           double deltaYCoordinate = trackList[1].YCoordinate - trackList[0].YCoordinate;
+           double radians = Math.Atan2(deltaYCoordinate, deltaXCoordinate);
+           double degrees = radians * (180 / Math.PI);
 
-            if (_trackList.Count == 2)
-            {
-                double xCoordinate0 = _trackList[0].XCoordinate;
-                double xCoordinate1 = _trackList[1].XCoordinate;
-                double yCoordinate0 = _trackList[0].YCoordinate;
-                double yCoordinate1 = _trackList[1].YCoordinate;
-
-                double distanceC = Math.Sqrt(Math.Pow(xCoordinate0 - xCoordinate1, 2) +
-                                            Math.Pow(yCoordinate0 - yCoordinate1, 2));
-
-                double distanceA = Math.Sqrt(Math.Pow(xCoordinate1 - xCoordinate1, 2) +
-                                             Math.Pow(yCoordinate1 - yCoordinate0, 2));
-
-                double distanceB = Math.Sqrt(Math.Pow(xCoordinate0 - xCoordinate1, 2) +
-                                             Math.Pow(yCoordinate0 - yCoordinate0, 2));
-
-                double punktB = (Math.Pow(distanceA, 2) + Math.Pow(distanceC, 2) - Math.Pow(distanceB, 2)) / 2 *
-                                distanceA * distanceC;
-
-                double vinkel = Math.Acos(punktB);
-
-                track.Course = vinkel;
-
-                _trackList.RemoveAt(0);
-            }
+           trackList[1].Course = degrees;
         }
     }
 }

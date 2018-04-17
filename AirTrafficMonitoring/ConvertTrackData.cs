@@ -8,27 +8,24 @@ namespace AirTrafficMonitoring
 {
     public class ConvertTrackData : IConvertTrackData
     {
-        private readonly Track _myTrack;
         private ConvertStringToDateTime _convertStringToDateTime;
 
-        public ConvertTrackData(Track myTrack)
-        {
-            _myTrack = myTrack;
-        }
 
         public Track ConvertData(string trackData)
         {
+            var myTrack = new Track();
+
             _convertStringToDateTime = new ConvertStringToDateTime();
 
             string[] array = trackData.Split(';');
 
-            _myTrack.Tag = array[0];
-            _myTrack.XCoordinate = Convert.ToInt32(array[1]);
-            _myTrack.YCoordinate = Convert.ToInt32(array[2]);
-            _myTrack.Altitude = Convert.ToInt32(array[3]);
-            _myTrack.Timestamp = _convertStringToDateTime.ConvertToDateTime(array[4]);
+            myTrack.Tag = array[0];
+            myTrack.XCoordinate = Convert.ToInt32(array[1]);
+            myTrack.YCoordinate = Convert.ToInt32(array[2]);
+            myTrack.Altitude = Convert.ToInt32(array[3]);
+            myTrack.Timestamp = _convertStringToDateTime.ConvertToDateTime(array[4]);
             
-            return _myTrack;
+            return myTrack;
         }
     }
 }

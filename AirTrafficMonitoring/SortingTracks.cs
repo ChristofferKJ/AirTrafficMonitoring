@@ -10,10 +10,12 @@ namespace AirTrafficMonitoring
     {
         public Dictionary<string,List<ITrack>> TracksInAirspace { get; set; }
         private readonly ICalculateVelocity _calculateVelocity;
+        private readonly ICalculateCourse _calculateCourse;
 
-        public SortingTracks(ICalculateVelocity calculateVelocity)
+        public SortingTracks(ICalculateVelocity calculateVelocity, ICalculateCourse calculateCourse)
         {
             _calculateVelocity = calculateVelocity;
+            _calculateCourse = calculateCourse;
             TracksInAirspace = new Dictionary<string, List<ITrack>>();
         }
 
@@ -27,8 +29,10 @@ namespace AirTrafficMonitoring
 
             else
             {
-                List<ITrack> existingTrack = TracksInAirspace.First(tag => tag.Key == trackEventArgs.ITrack.Tag).Value;
+                var existingTrack = TracksInAirspace.First(tag => tag.Key == trackEventArgs.ITrack.Tag).Value;
+                existingTrack.AddToTrackList(trackEventArgs.ITrack, 2);
                 _calculateVelocity.CalcVelocity(existingTrack);
+                _calculateCourse.CalcCourse(existingTrack);
             }
         }
     }

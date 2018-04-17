@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,13 +9,11 @@ namespace AirTrafficMonitoring
 {
     class LogWriter : ILogWriter
     {
-        public void LogEventToFile(ITrack track1, ITrack track2)
+        public void LogEventToFile(string tag1, string tag2, DateTime timeofOccurrence)
         {
-            track1.ToStringLog();
-            track2.ToStringLog();
-
-            string text = "The patient has left the bed";
-            System.IO.File.WriteAllText(@"\\Mac\Home\Documents\AU\3. semester\Programmering\Øvelse\Hospital Bed, GoF Factory\LogFile.txt", text);
+            string path = Directory.GetCurrentDirectory();
+            string text = "Alarm! \nTag: " + tag1 + " and tag: " + tag2 + " is on a collision course \nTime: " + timeofOccurrence;
+            System.IO.File.WriteAllText(path, text);
         }
     }
 }

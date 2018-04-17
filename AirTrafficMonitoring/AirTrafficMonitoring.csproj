@@ -55,11 +55,12 @@
     <Compile Include="IConvertTrackData.cs" />
     <Compile Include="IFilterAirspace.cs" />
     <Compile Include="ILogWriter.cs" />
+    <Compile Include="ISeperationTracks.cs" />
     <Compile Include="ISortingTracks.cs" />
     <Compile Include="ITrack.cs" />
     <Compile Include="IWriter.cs" />
     <Compile Include="LogWriter.cs" />
-    <Compile Include="SeperationEvent.cs" />
+    <Compile Include="SeperationTracks.cs" />
     <Compile Include="SortingTracks.cs" />
     <Compile Include="Track.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

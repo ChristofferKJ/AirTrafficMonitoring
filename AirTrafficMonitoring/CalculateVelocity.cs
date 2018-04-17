@@ -12,8 +12,7 @@ namespace AirTrafficMonitoring
 
         public void CalcVelocity(List<ITrack> trackList)
         {
-            //if (trackList.Count == 2)
-            {
+
                 double xCoordinate0 = trackList[0].XCoordinate;
                 double xCoordinate1 = trackList[1].XCoordinate;
                 double yCoordinate0 = trackList[0].YCoordinate;
@@ -24,10 +23,7 @@ namespace AirTrafficMonitoring
 
                 double timedifference = trackList[1].Timestamp.Subtract(trackList[0].Timestamp).TotalSeconds;
 
-                trackList[1].Velocity = distance / timedifference;
-
-                trackList.RemoveAt(0);
-            }
+                trackList[1].Velocity = distance / timedifference;            
         }
     }
 }

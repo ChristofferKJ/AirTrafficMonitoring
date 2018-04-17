@@ -35,6 +35,7 @@ namespace AirTrafficMonitoring
                 var track = _convertTrackData.ConvertData(myList[i]);
                     if (_filterAirspace.FilterTrack(track))
                     {
+
                         SortTracksInAirspace?.Invoke(this, new TrackEventArgs() {ITrack = track});
                         _writer.WriteTrack(track);
                     }

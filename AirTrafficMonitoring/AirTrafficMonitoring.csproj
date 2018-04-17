@@ -59,7 +59,7 @@
     <Compile Include="ITrack.cs" />
     <Compile Include="IWriter.cs" />
     <Compile Include="LogWriter.cs" />
-    <Compile Include="SeperationEvent.cs" />
+    <Compile Include="SeperationPlanes.cs" />
     <Compile Include="SortingTracks.cs" />
     <Compile Include="Track.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

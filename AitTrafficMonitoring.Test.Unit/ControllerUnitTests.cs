@@ -11,20 +11,28 @@ using TransponderReceiver;
 namespace AitTrafficMonitoring.Test.Unit
 {
     [TestFixture]
-    public class DisplayTrackUnitTest
+    public class ControllerUnitTests
     {
         private ITransponderReceiver _transponderReceiver;
         private Controller _uut;
         private IWriter _writer;
+        private IConvertTrackData _convertTrackData;
+        private IFilterAirspace _filterAirspace;
+        private ISortingTracks _sortingTracks;
+        private ISeperationTracks _seperationTracks;
 
         [SetUp]
         public void Setup()
         {
+            _transponderReceiver = Substitute.For<ITransponderReceiver>();
+            _convertTrackData = Substitute.For<IConvertTrackData>();
             _writer = Substitute.For<IWriter>();
-            _transponderReceiver = Substitute.For<ITransponderReceiver>(); 
-            _uut = new Controller(_transponderReceiver,_writer);
+            _filterAirspace = Substitute.For<IFilterAirspace>();
+            _sortingTracks = Substitute.For<ISortingTracks>();
+            _seperationTracks = Substitute.For<ISeperationTracks>();
+            _uut = new Controller(_transponderReceiver,_convertTrackData,_writer,_filterAirspace,_sortingTracks,_seperationTracks);
 
-            var track = "BIJ515;12345;54321;67891;20180409153742853";
+            var track = "BIJ515;12345;54321;17891;20180409153742853";
             List<string> myList = new List<string>();
             myList.Add(track);
 
@@ -54,7 +62,7 @@ namespace AitTrafficMonitoring.Test.Unit
         [Test]
         public void WriteTrack_EventRaised_AltitudeIsOK()
         {
-            _writer.Received().WriteTrack(Arg.Is<Track>(track => track.Altitude.Equals(67891)));
+            _writer.Received().WriteTrack(Arg.Is<Track>(track => track.Altitude.Equals(17891)));
         }
 
         [Test]

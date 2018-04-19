@@ -7,7 +7,7 @@ using TransponderReceiver;
 
 namespace AirTrafficMonitoring
 {
-    public class Track : ITrack
+    public class Track
     {
         public string Tag { get; set; }
         public int XCoordinate { get; set; }
@@ -23,11 +23,5 @@ namespace AirTrafficMonitoring
                    YCoordinate + "\nAltitude: " + Altitude + "\nTimestamp: " +
                    Timestamp + "." + Timestamp.Millisecond + "\nVelocity: " + Velocity + "\nCourse: " + Course + "\n";
         }
-
-        public string ToStringLog()
-        {
-            return "Tag: " + Tag + "\nTimestamp: " + Timestamp + "." + Timestamp.Millisecond + "\n";
-        }
-
     }
 }

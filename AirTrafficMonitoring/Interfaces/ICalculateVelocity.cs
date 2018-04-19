@@ -4,6 +4,6 @@ namespace AirTrafficMonitoring
 {
     public interface ICalculateVelocity
     {
-        void CalcVelocity(List<ITrack> trackList);
+        void CalcVelocity(Track track1, Track track2);
     }
 }

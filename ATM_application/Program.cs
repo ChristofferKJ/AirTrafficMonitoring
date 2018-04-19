@@ -12,18 +12,18 @@ namespace ATM_application
     {
         static void Main(string[] args)
         {
-            IConvertTrackData convertTrackData = new ConvertTrackData();
-            IWriter writer = new ConsoleWriter();
+            var myReciever = TransponderReceiverFactory.CreateTransponderDataReceiver();
+            IConvertStringToDateTime convertStringToDateTime = new ConvertStringToDateTime();
             ICalculateVelocity calculateVelocity = new CalculateVelocity();
             ICalculateCourse calculateCourse = new CalculateCourse();
-            IFilterAirspace filterAirspace = new FilterAirspace();
-            ISortingTracks sortingTracks = new SortingTracks(calculateVelocity, calculateCourse);
+            IWriter writer = new ConsoleWriter();
             ILogWriter logWriterToFile = new LogWriter();
             ILogWriter logWriterToConsole = new LogWriter();
             ISeperationTracks seperationTracks = new SeperationTracks(logWriterToFile, logWriterToConsole);
-            var myReciever = TransponderReceiverFactory.CreateTransponderDataReceiver();    
-            Controller myDisplayTrack = new Controller(myReciever, convertTrackData, writer, filterAirspace, sortingTracks, seperationTracks);
-         
+            ISortingTracks sortingTracks = new SortingTracks(calculateVelocity, calculateCourse,writer,seperationTracks);
+            IFilterAirspace filterAirspace = new FilterAirspace(sortingTracks);
+            IConvertTrackData convertTrackData = new ConvertTrackData(myReciever,convertStringToDateTime,filterAirspace);
+           
             Console.ReadKey();
         }
     }

@@ -3,16 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TransponderReceiver;
 
 namespace AirTrafficMonitoring
 {
     public class ConvertTrackData : IConvertTrackData
     {
-        private IConvertStringToDateTime _convertStringToDateTime;
+        private readonly IConvertStringToDateTime _convertStringToDateTime;
+        private readonly IFilterAirspace _filterAirspace;
 
-        public ConvertTrackData(IConvertStringToDateTime convertStringToDateTime)
+        public ConvertTrackData(ITransponderReceiver transponderReceiver,IConvertStringToDateTime convertStringToDateTime, IFilterAirspace filterAirspace)
         {
+            transponderReceiver.TransponderDataReady += TransponderReceiver_TransponderDataReady;
             _convertStringToDateTime = convertStringToDateTime;
+            _filterAirspace = filterAirspace;
+        }
+
+        private void TransponderReceiver_TransponderDataReady(object sender, RawTransponderDataEventArgs e)
+        {
+            var myList = e.TransponderData;
+            var trackList = new List<Track>();
+
+            for (var i = 0; i < myList.Count; i++)
+            {
+                var track = ConvertData(myList[i]);
+                trackList.Add(track);
+            }
+
+            _filterAirspace.FilterTrack(trackList);
         }
 
         public Track ConvertData(string trackData)

@@ -50,7 +50,6 @@
     <Compile Include="Logging\ConsoleWriter.cs" />
     <Compile Include="Converting\ConvertStringToDateTime.cs" />
     <Compile Include="Converting\ConvertTrackData.cs" />
-    <Compile Include="Controller.cs" />
     <Compile Include="FilterAirspace.cs" />
     <Compile Include="Interfaces\ICalculateCourse.cs" />
     <Compile Include="Interfaces\ICalculateVelocity.cs" />
@@ -59,15 +58,12 @@
     <Compile Include="Interfaces\ILogWriter.cs" />
     <Compile Include="Interfaces\ISeperationTracks.cs" />
     <Compile Include="Interfaces\ISortingTracks.cs" />
-    <Compile Include="Interfaces\ITrack.cs" />
     <Compile Include="Interfaces\IWriter.cs" />
     <Compile Include="Logging\LogWriter.cs" />
     <Compile Include="SeperationTracks.cs" />
     <Compile Include="SortingTracks.cs" />
     <Compile Include="Track.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TrackEventArgs.cs" />
-    <Compile Include="TrackLists.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

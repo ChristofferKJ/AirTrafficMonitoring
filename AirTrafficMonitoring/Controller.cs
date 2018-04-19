@@ -44,7 +44,7 @@ namespace AirTrafficMonitoring
                         SortTracksInAirspace?.Invoke(this, new TrackEventArgs() {ITrack = track});
                         _writer.WriteTrack(track);
                         _seperationTracks.SeperationCheck(trackList);
-                }
+                    }
                 }
         }
     }

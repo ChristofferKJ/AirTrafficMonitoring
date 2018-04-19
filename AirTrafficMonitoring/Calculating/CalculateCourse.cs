@@ -14,7 +14,7 @@ namespace AirTrafficMonitoring
            double deltaXCoordinate = trackList[1].XCoordinate - trackList[0].XCoordinate;
            double deltaYCoordinate = trackList[1].YCoordinate - trackList[0].YCoordinate;
            double radians = Math.Atan2(deltaYCoordinate, deltaXCoordinate);
-           double degrees = radians * (180 / Math.PI);
+           double degrees = Math.Abs(radians * (180 / Math.PI));
 
            trackList[1].Course = degrees;
         }

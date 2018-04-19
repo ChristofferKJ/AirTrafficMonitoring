@@ -1,9 +1,9 @@
-﻿namespace AirTrafficMonitoring
+﻿using System.Collections.Generic;
+
+namespace AirTrafficMonitoring
 {
     public interface IFilterAirspace
     {
-        void FilterTrack(ITrack track);
-
-        bool IsTrackInAirspace { get; set; }
+        void FilterTrack(List<Track> trackList);
     }
 }

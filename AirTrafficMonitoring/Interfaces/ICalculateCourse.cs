@@ -4,6 +4,6 @@ namespace AirTrafficMonitoring
 {
     public interface ICalculateCourse
     {
-        void CalcCourse(List<ITrack> _trackList);
+        void CalcCourse(Track track1, Track track2);
     }
 }

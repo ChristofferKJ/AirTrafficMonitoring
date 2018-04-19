@@ -9,10 +9,11 @@ namespace AirTrafficMonitoring
     public class CalculateCourse : ICalculateCourse
     {
 
-        public void CalcCourse(List<ITrack> trackList)
+        public void CalcCourse(Track track1, Track track2)
         {
-           double deltaXCoordinate = trackList[1].XCoordinate - trackList[0].XCoordinate;
-           double deltaYCoordinate = trackList[1].YCoordinate - trackList[0].YCoordinate;
+           double deltaXCoordinate = track2.XCoordinate - track1.XCoordinate;
+           double deltaYCoordinate = track2.YCoordinate - track1.YCoordinate;
+
            double radians = Math.Atan(deltaYCoordinate/ deltaXCoordinate);
            double degrees = radians / (180 / Math.PI);
 
@@ -25,7 +26,7 @@ namespace AirTrafficMonitoring
                 degrees += 360;
             }
             
-           trackList[1].Course = degrees;
+           track2.Course = degrees;
         }
     }
 }

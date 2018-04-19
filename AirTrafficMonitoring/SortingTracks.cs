@@ -8,32 +8,44 @@ namespace AirTrafficMonitoring
 {
     public class SortingTracks : ISortingTracks
     {
-        public Dictionary<string,List<ITrack>> TracksInAirspace { get; set; }
         private readonly ICalculateVelocity _calculateVelocity;
         private readonly ICalculateCourse _calculateCourse;
+        private readonly IWriter _writer;
+        private readonly ISeperationTracks _seperationTracks;
+        private List<Track> _currentTrackList;
 
-        public SortingTracks(ICalculateVelocity calculateVelocity, ICalculateCourse calculateCourse)
+        public SortingTracks(ICalculateVelocity calculateVelocity, ICalculateCourse calculateCourse, IWriter writer, ISeperationTracks seperationTracks)
         {
             _calculateVelocity = calculateVelocity;
             _calculateCourse = calculateCourse;
-            TracksInAirspace = new Dictionary<string, List<ITrack>>();
+            _writer = writer;
+            _seperationTracks = seperationTracks;
         }
 
+        public void SortTracksInAirspace(List<Track> newTrackList)
+        {
+            _currentTrackList = new List<Track>();
 
-        public void SortTracksInAirspace(object sender, TrackEventArgs trackEventArgs)
-        {           
-            if (!TracksInAirspace.ContainsKey(trackEventArgs.ITrack.Tag))
+            for (int i = 0; i < newTrackList.Count; i++)
             {
-                TracksInAirspace.Add(trackEventArgs.ITrack.Tag, new List<ITrack>() {trackEventArgs.ITrack});
+                for (int j = 0; j < _currentTrackList.Count; j++)
+                {
+                    if (newTrackList[i].Tag == _currentTrackList[j].Tag)
+                    {
+                        _calculateVelocity.CalcVelocity(_currentTrackList[j], newTrackList[i]);
+                        _calculateCourse.CalcCourse(_currentTrackList[j], newTrackList[i]);
+
+                    }
+                }
+            }
+            _currentTrackList = newTrackList;
+
+            foreach (var track in _currentTrackList)
+            {
+                _writer.WriteTrack(track);
             }
 
-            else
-            {
-                var existingTrack = TracksInAirspace.First(tag => tag.Key == trackEventArgs.ITrack.Tag).Value;
-                existingTrack.AddToTrackList(trackEventArgs.ITrack, 2);
-                _calculateVelocity.CalcVelocity(existingTrack);
-                _calculateCourse.CalcCourse(existingTrack);
-            }
+            _seperationTracks.SeperationCheck(_currentTrackList);
         }
     }
 }

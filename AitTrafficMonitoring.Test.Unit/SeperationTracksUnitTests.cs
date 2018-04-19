@@ -17,7 +17,6 @@ namespace AitTrafficMonitoring.Test.Unit
         private ISeperationTracks _uut;
         private ILogWriter _logWriterToFile;
         private ILogWriter _logWriterToConsole;
-        private ITransponderReceiver _transponderReceiver;
         private List<Track> _myList;
         private DateTime _date1;
         private DateTime _date2;
@@ -30,7 +29,6 @@ namespace AitTrafficMonitoring.Test.Unit
         [SetUp]
         public void Setup()
         {
-            _transponderReceiver = Substitute.For<ITransponderReceiver>();
             _logWriterToFile = Substitute.For<ILogWriter>();
             _logWriterToConsole = Substitute.For<ILogWriter>();
             _uut = new SeperationTracks(_logWriterToFile,_logWriterToConsole);
@@ -39,7 +37,6 @@ namespace AitTrafficMonitoring.Test.Unit
             _date2 = new DateTime(2018, 4, 17, 20, 15, 14);
             _date3 = new DateTime(2018, 4, 17, 20, 16, 26);
             _date4 = new DateTime(2018, 4, 17, 20, 17, 21);
-
 
             _track1 = new Track
             {

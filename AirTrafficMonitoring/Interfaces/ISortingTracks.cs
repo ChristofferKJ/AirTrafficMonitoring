@@ -4,8 +4,6 @@ namespace AirTrafficMonitoring
 {
     public interface ISortingTracks
     {
-        Dictionary<string, List<ITrack>> TracksInAirspace { get; set; }
-
-        void SortTracksInAirspace(object sender, TrackEventArgs trackEventArgs);
+        void SortTracksInAirspace(List<Track> trackList);
     }
 }

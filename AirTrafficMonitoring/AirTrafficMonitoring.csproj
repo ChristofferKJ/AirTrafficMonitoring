@@ -43,23 +43,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CalculateCourse.cs" />
-    <Compile Include="CalculateVelocity.cs" />
-    <Compile Include="ConsoleWriter.cs" />
-    <Compile Include="ConvertStringToDateTime.cs" />
-    <Compile Include="ConvertTrackData.cs" />
+    <Compile Include="Calculating\CalculateCourse.cs" />
+    <Compile Include="Calculating\CalculateVelocity.cs" />
+    <Compile Include="Logging\ConsoleSeperation.cs" />
+    <Compile Include="Logging\ConsoleWriter.cs" />
+    <Compile Include="Converting\ConvertStringToDateTime.cs" />
+    <Compile Include="Converting\ConvertTrackData.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="FilterAirspace.cs" />
-    <Compile Include="ICalculateCourse.cs" />
-    <Compile Include="ICalculateVelocity.cs" />
-    <Compile Include="IConvertTrackData.cs" />
-    <Compile Include="IFilterAirspace.cs" />
-    <Compile Include="ILogWriter.cs" />
-    <Compile Include="ISeperationTracks.cs" />
-    <Compile Include="ISortingTracks.cs" />
-    <Compile Include="ITrack.cs" />
-    <Compile Include="IWriter.cs" />
-    <Compile Include="LogWriter.cs" />
+    <Compile Include="Interfaces\ICalculateCourse.cs" />
+    <Compile Include="Interfaces\ICalculateVelocity.cs" />
+    <Compile Include="Interfaces\IConvertTrackData.cs" />
+    <Compile Include="Interfaces\IFilterAirspace.cs" />
+    <Compile Include="Interfaces\ILogWriter.cs" />
+    <Compile Include="Interfaces\ISeperationTracks.cs" />
+    <Compile Include="Interfaces\ISortingTracks.cs" />
+    <Compile Include="Interfaces\ITrack.cs" />
+    <Compile Include="Interfaces\IWriter.cs" />
+    <Compile Include="Logging\LogWriter.cs" />
     <Compile Include="SeperationTracks.cs" />
     <Compile Include="SortingTracks.cs" />
     <Compile Include="Track.cs" />

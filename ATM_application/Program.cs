@@ -18,8 +18,11 @@ namespace ATM_application
             ICalculateCourse calculateCourse = new CalculateCourse();
             IFilterAirspace filterAirspace = new FilterAirspace();
             ISortingTracks sortingTracks = new SortingTracks(calculateVelocity, calculateCourse);
+            ILogWriter logWriterToFile = new LogWriter();
+            ILogWriter logWriterToConsole = new LogWriter();
+            ISeperationTracks seperationTracks = new SeperationTracks(logWriterToFile, logWriterToConsole);
             var myReciever = TransponderReceiverFactory.CreateTransponderDataReceiver();    
-            Controller myDisplayTrack = new Controller(myReciever, convertTrackData, writer, filterAirspace, sortingTracks);
+            Controller myDisplayTrack = new Controller(myReciever, convertTrackData, writer, filterAirspace, sortingTracks, seperationTracks);
          
             Console.ReadKey();
         }

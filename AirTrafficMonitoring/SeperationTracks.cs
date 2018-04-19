@@ -8,35 +8,45 @@ namespace AirTrafficMonitoring
 {
     public class SeperationTracks : ISeperationTracks
     {
-        private readonly ILogWriter _logWriter;
+        private readonly ILogWriter _logWriterToFile;
+        private readonly ILogWriter _logWriterToConsole;
 
-        public SeperationTracks(ILogWriter logWriter)
+        public SeperationTracks(ILogWriter logWriterToFile, ILogWriter logWriterToConsole)
         {
-            _logWriter = logWriter;
+            _logWriterToFile = logWriterToFile;
+            _logWriterToConsole = logWriterToConsole;
         }
 
         public void SeperationCheck(List<Track> trackList)
         {
             for (var i = 0; i < trackList.Count; i++)
-                if (trackList[i].Tag != trackList[i + 1].Tag)
+            {
+                for (int n = i + 1; n < trackList.Count; n++)
                 {
-                    double xCoordinate0 = trackList[i].XCoordinate;
-                    double xCoordinate1 = trackList[i + 1].XCoordinate;
-                    double yCoordinate0 = trackList[i].YCoordinate;
-                    double yCoordinate1 = trackList[i + 1].YCoordinate;
-
-                    var HorisentalDist = Math.Sqrt(Math.Pow(xCoordinate0 - xCoordinate1, 2) +
-                                                   Math.Pow(yCoordinate0 - yCoordinate1, 2));
-                    double VertikalDist = Math.Abs(trackList[i].Altitude - trackList[i + 1].Altitude);
-                    if (HorisentalDist < 5000 && VertikalDist < 300)
+                    if (trackList.Count >= 2 && trackList[i].Tag != trackList[n].Tag)
                     {
-                        var timeOfOccurrence = trackList[i].Timestamp > trackList[i + 1].Timestamp
-                            ? trackList[i].Timestamp
-                            : trackList[i + 1].Timestamp;
+                        double xCoordinate0 = trackList[i].XCoordinate;
+                        double xCoordinate1 = trackList[n].XCoordinate;
+                        double yCoordinate0 = trackList[i].YCoordinate;
+                        double yCoordinate1 = trackList[n].YCoordinate;
 
-                        _logWriter.LogEventToFile(trackList[i].Tag, trackList[i + 1].Tag, timeOfOccurrence);
+                        var horisentalDist = Math.Sqrt(Math.Pow(xCoordinate0 - xCoordinate1, 2) +
+                                                       Math.Pow(yCoordinate0 - yCoordinate1, 2));
+
+                        double vertikalDist = Math.Abs(trackList[i].Altitude - trackList[n].Altitude);
+
+                        if (horisentalDist < 5000 && vertikalDist < 300)
+                        {
+                            var timeOfOccurrence = trackList[i].Timestamp > trackList[n].Timestamp
+                                ? trackList[i].Timestamp
+                                : trackList[n].Timestamp;
+
+                            _logWriterToFile.LogEvent(trackList[i].Tag, trackList[n].Tag, timeOfOccurrence);
+                            _logWriterToConsole.LogEvent(trackList[i].Tag, trackList[n].Tag, timeOfOccurrence);
+                        }
                     }
                 }
+            }
         }
     }
 }

@@ -15,7 +15,7 @@ namespace AirTrafficMonitoring
         private readonly ISortingTracks _sortingTracks;
         private readonly ISeperationTracks _seperationTracks; 
         public event EventHandler<TrackEventArgs> SortTracksInAirspace;
-        public event EventHandler<TrackEventArgs> Con // SKal vi oprette et nyt event i stedet??
+        //public event EventHandler<TrackEventArgs> Con // SKal vi oprette et nyt event i stedet??
         
 
         public Controller(ITransponderReceiver myReciever, IConvertTrackData convertTrackData, IWriter writer, IFilterAirspace filterAirspace, ISortingTracks sortingTracks, ISeperationTracks seperationTracks)
@@ -32,17 +32,19 @@ namespace AirTrafficMonitoring
         private void _myReciever_TransponderDataReady(object sender, RawTransponderDataEventArgs e)
         {
             var myList = e.TransponderData;
-            
+            var trackList = new List<Track>();
 
                 for (int i = 0; i < myList.Count; i++)
                 {
                 var track = _convertTrackData.ConvertData(myList[i]);
+                trackList.Add(track);
+
                     if (_filterAirspace.FilterTrack(track))
                     {
-                        //_seperationTracks.SeperationCheck(myList);
                         SortTracksInAirspace?.Invoke(this, new TrackEventArgs() {ITrack = track});
                         _writer.WriteTrack(track);
-                    }
+                        _seperationTracks.SeperationCheck(trackList);
+                }
                 }
         }
     }

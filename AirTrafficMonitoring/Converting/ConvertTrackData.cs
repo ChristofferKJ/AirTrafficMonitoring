@@ -8,14 +8,16 @@ namespace AirTrafficMonitoring
 {
     public class ConvertTrackData : IConvertTrackData
     {
-        private ConvertStringToDateTime _convertStringToDateTime;
+        private IConvertStringToDateTime _convertStringToDateTime;
 
+        public ConvertTrackData(IConvertStringToDateTime convertStringToDateTime)
+        {
+            _convertStringToDateTime = convertStringToDateTime;
+        }
 
         public Track ConvertData(string trackData)
         {
             var myTrack = new Track();
-
-            _convertStringToDateTime = new ConvertStringToDateTime();
 
             string[] array = trackData.Split(';');
 

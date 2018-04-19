@@ -11,7 +11,7 @@ namespace AirTrafficMonitoring
 
     //https://stackoverflow.com/questions/7580809/parse-c-sharp-string-to-datetime
 
-    public class ConvertStringToDateTime
+    public class ConvertStringToDateTime : IConvertStringToDateTime
     {
         public DateTime ConvertToDateTime(string dateString)
         {

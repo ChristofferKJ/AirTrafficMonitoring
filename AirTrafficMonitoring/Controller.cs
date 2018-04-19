@@ -34,18 +34,20 @@ namespace AirTrafficMonitoring
             var myList = e.TransponderData;
             var trackList = new List<Track>();
 
-                for (int i = 0; i < myList.Count; i++)
-                {
+            for (var i = 0; i < myList.Count; i++)
+            {
                 var track = _convertTrackData.ConvertData(myList[i]);
                 trackList.Add(track);
 
-                    if (_filterAirspace.FilterTrack(track))
-                    {
-                        SortTracksInAirspace?.Invoke(this, new TrackEventArgs() {ITrack = track});
-                        _writer.WriteTrack(track);
-                        _seperationTracks.SeperationCheck(trackList);
+                _filterAirspace.FilterTrack(track);
+
+                if (_filterAirspace.IsTrackInAirspace)
+                {
+                    SortTracksInAirspace?.Invoke(this, new TrackEventArgs {ITrack = track});
+                    _writer.WriteTrack(track);
+                    _seperationTracks.SeperationCheck(trackList);
                 }
-                }
+            }
         }
     }
 }

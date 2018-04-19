@@ -24,7 +24,7 @@ namespace AirTrafficMonitoring
             {
                 degrees += 360;
             }
-
+            
            trackList[1].Course = degrees;
         }
     }

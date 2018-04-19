@@ -8,6 +8,6 @@ namespace AirTrafficMonitoring
 {
    public interface ILogWriter
     {
-        void LogEventToFile(string tag1, string tag2, DateTime timeofOccurrence);
+        void LogEvent(string tag1, string tag2, DateTime timeofOccurrence);
     }
 }

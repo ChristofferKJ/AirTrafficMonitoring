@@ -38,11 +38,14 @@ namespace AirTrafficMonitoring
             {
                 var track = _convertTrackData.ConvertData(myList[i]);
                 trackList.Add(track);
+            }
 
-                _filterAirspace.FilterTrack(track);
+            // trackList contains all tracks - inside and outside the monitored airspace
 
-                if (_filterAirspace.IsTrackInAirspace)
-                {
+            _filterAirspace.FilterTrack(trackList);
+            
+            // trackList contains only tracks inside the airspace
+
                     SortTracksInAirspace?.Invoke(this, new TrackEventArgs {ITrack = track});
                     _writer.WriteTrack(track);
                     _seperationTracks.SeperationCheck(trackList);

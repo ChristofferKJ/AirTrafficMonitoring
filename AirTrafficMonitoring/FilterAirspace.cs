@@ -8,11 +8,15 @@ namespace AirTrafficMonitoring
 {
     public class FilterAirspace : IFilterAirspace
     {
-        public bool IsTrackInAirspace { get; set; }
-
-        public void FilterTrack(ITrack track)
+        public void FilterTrack(List<ITrack> tracks)
         {
-            IsTrackInAirspace = !(track.XCoordinate > 90000 || track.XCoordinate < 10000 || track.YCoordinate < 10000 || track.YCoordinate > 90000 || track.Altitude < 500 || track.Altitude > 20000);
+            foreach (var track in tracks)
+            {
+
+                if (track.XCoordinate > 90000 || track.XCoordinate < 10000 || track.YCoordinate < 10000 ||
+                    track.YCoordinate > 90000 || track.Altitude < 500 || track.Altitude > 20000)
+                    tracks.Remove(track);
+            }
         }
     }
 }

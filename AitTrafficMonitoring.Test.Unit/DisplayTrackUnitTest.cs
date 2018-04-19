@@ -22,7 +22,7 @@ namespace AitTrafficMonitoring.Test.Unit
         {
             _writer = Substitute.For<IWriter>();
             _transponderReceiver = Substitute.For<ITransponderReceiver>(); 
-            _uut = new Controller(_transponderReceiver,_writer);
+           // _uut = new Controller(_transponderReceiver,_writer);
 
             var track = "BIJ515;12345;54321;67891;20180409153742853";
             List<string> myList = new List<string>();

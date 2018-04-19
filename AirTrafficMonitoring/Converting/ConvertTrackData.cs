@@ -29,7 +29,6 @@ namespace AirTrafficMonitoring
                 var track = ConvertData(myList[i]);
                 trackList.Add(track);
             }
-
             _filterAirspace.FilterTrack(trackList);
         }
 

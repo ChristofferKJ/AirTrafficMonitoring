@@ -20,12 +20,11 @@ namespace AirTrafficMonitoring
             _calculateCourse = calculateCourse;
             _writer = writer;
             _seperationTracks = seperationTracks;
+            _currentTrackList = new List<Track>();
         }
 
         public void SortTracksInAirspace(List<Track> newTrackList)
         {
-            _currentTrackList = new List<Track>();
-
             for (int i = 0; i < newTrackList.Count; i++)
             {
                 for (int j = 0; j < _currentTrackList.Count; j++)
@@ -34,7 +33,6 @@ namespace AirTrafficMonitoring
                     {
                         _calculateVelocity.CalcVelocity(_currentTrackList[j], newTrackList[i]);
                         _calculateCourse.CalcCourse(_currentTrackList[j], newTrackList[i]);
-
                     }
                 }
             }

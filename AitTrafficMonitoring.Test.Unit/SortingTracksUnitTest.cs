@@ -67,7 +67,6 @@ namespace AitTrafficMonitoring.Test.Unit
             _uut = new SortingTracks(_calculateVelocity,_calculateCourse,_writer,_seperationTracks);
         }
 
-
         [Test]
         public void SortingTracksInAirspace_TwoTracksWithSameTag_CalcVelocityIsCalled()
         {
@@ -85,7 +84,6 @@ namespace AitTrafficMonitoring.Test.Unit
             _uut.SortTracksInAirspace(_myNewList);
             _calculateCourse.Received().CalcCourse(_myCurrentList[0], _myNewList[0]);
         }
-
 
         [Test]
         public void SortingTracksInAirspace_TwoTracksWithDifferentTags_CalcVelocityIsNotCalled()
@@ -136,7 +134,5 @@ namespace AitTrafficMonitoring.Test.Unit
             _uut.SortTracksInAirspace(_myNewList);
             _seperationTracks.Received().SeperationCheck(_myCurrentList);
         }
-
-
     }
 }

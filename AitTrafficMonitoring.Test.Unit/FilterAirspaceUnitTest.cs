@@ -15,7 +15,6 @@ namespace AitTrafficMonitoring.Test.Unit
     {
         private IFilterAirspace _uut;
         private Track _track;
-        private Track _track2;
         private List<Track> _tracklist;
         private ISortingTracks _sortingTracks;
 
@@ -25,8 +24,6 @@ namespace AitTrafficMonitoring.Test.Unit
             _sortingTracks = Substitute.For<ISortingTracks>();
             _uut = new FilterAirspace(_sortingTracks);
             _tracklist = new List<Track>();
-            _track2 = new Track { XCoordinate = 10000, YCoordinate = 10000, Altitude = 500 };
-
         }
         [Test]
         public void FilterTrack_TrackIsInAirspace_TrackIsOk()

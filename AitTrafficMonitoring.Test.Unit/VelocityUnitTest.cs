@@ -33,7 +33,7 @@ namespace AitTrafficMonitoring.Test.Unit
             };
             _track2 = new Track
             {
-                Tag = "KJH676",
+                Tag = "JHL878",
                 XCoordinate = 92345,
                 YCoordinate = 88765,
                 Altitude = 19987,

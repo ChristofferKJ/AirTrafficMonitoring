@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATM_application", "ATM_appl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AitTrafficMonitoring.Test.Unit", "AitTrafficMonitoring.Test.Unit\AitTrafficMonitoring.Test.Unit.csproj", "{3A189AA4-FCC9-4254-BB18-95A2DFC26163}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AitTrafficMonitoring.Test.Integration", "AitTrafficMonitoring.Test.Integration\AitTrafficMonitoring.Test.Integration.csproj", "{63362EA4-0635-46CA-9063-A6ACA46D2359}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AitTrafficMonitoring.Test.Integration", "..\..\..\..\..\..\..\Desktop\AirTrafficMonitoring\AitTrafficMonitoring.Test.Integration\AitTrafficMonitoring.Test.Integration.csproj", "{63362EA4-0635-46CA-9063-A6ACA46D2359}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

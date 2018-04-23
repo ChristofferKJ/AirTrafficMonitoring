@@ -16,17 +16,13 @@ namespace AitTrafficMonitoring.Test.Unit
         private Track _track2;
         private List<Track> _tracks;
 
-
         [SetUp]
         public void Setup()
         {
             _uut = new CalculateVelocity();
 
-
             var dateTime1 = new DateTime(2018, 04, 05, 20, 20, 18);
             var dateTime2 = new DateTime(2018, 04, 05, 20, 20, 20);
-
-
             _track1 = new Track
             {
                 Tag = "JHL878",

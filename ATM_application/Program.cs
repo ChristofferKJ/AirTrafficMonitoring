@@ -19,7 +19,9 @@ namespace ATM_application
             IWriter writer = new ConsoleWriter();
             ILogWriter logWriterToFile = new LogWriter();
             ILogWriter logWriterToConsole = new LogWriter();
-            ISeperationTracks seperationTracks = new SeperationTracks(logWriterToFile, logWriterToConsole);
+            SeperationEvent seperationEvent = new SeperationEvent();
+            IEventController eventController = new EventController(logWriterToFile,logWriterToConsole);
+            ISeperationTracks seperationTracks = new SeperationTracks(seperationEvent, eventController);
             ISortingTracks sortingTracks = new SortingTracks(calculateVelocity, calculateCourse,writer,seperationTracks);
             IFilterAirspace filterAirspace = new FilterAirspace(sortingTracks);
             IConvertTrackData convertTrackData = new ConvertTrackData(myReciever,convertStringToDateTime,filterAirspace);

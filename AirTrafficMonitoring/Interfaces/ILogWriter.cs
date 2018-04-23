@@ -9,5 +9,6 @@ namespace AirTrafficMonitoring
    public interface ILogWriter
     {
         void LogEvent(string tag1, string tag2, DateTime timeofOccurrence);
+        void UnlogEvent(string tag1, string tag2, DateTime timeofOccurrence);
     }
 }

@@ -43,5 +43,65 @@ namespace AitTrafficMonitoring.Test.Unit
             _uut.CalcCourse(_track1,_track2);
             Assert.That(Math.Round(_track2.Course),Is.EqualTo(225));
         }
+
+        [Test]
+        public void CalcCourse_NorthEast_CourseOK()
+        {
+            _track1.XCoordinate = 10000;
+            _track1.YCoordinate = 10000;
+            _track2.XCoordinate = 90000;
+            _track2.YCoordinate = 90000;
+
+            _uut.CalcCourse(_track1, _track2);
+            Assert.That(Math.Round(_track2.Course), Is.EqualTo(45));
+        }
+
+        [Test]
+        public void CalcCourse_North_CourseOK()
+        {
+            _track1.XCoordinate = 10000;
+            _track1.YCoordinate = 10000;
+            _track2.XCoordinate = 10000;
+            _track2.YCoordinate = 90000;
+
+            _uut.CalcCourse(_track1, _track2);
+            Assert.That(Math.Round(_track2.Course), Is.EqualTo(0));
+        }
+
+        [Test]
+        public void CalcCourse_South_CourseOK()
+        {
+            _track1.XCoordinate = 10000;
+            _track1.YCoordinate = 90000;
+            _track2.XCoordinate = 10000;
+            _track2.YCoordinate = 10000;
+
+            _uut.CalcCourse(_track1, _track2);
+            Assert.That(Math.Round(_track2.Course), Is.EqualTo(180));
+        }
+
+        [Test]
+        public void CalcCourse_West_CourseOK()
+        {
+            _track1.XCoordinate = 90000;
+            _track1.YCoordinate = 90000;
+            _track2.XCoordinate = 10000;
+            _track2.YCoordinate = 90000;
+
+            _uut.CalcCourse(_track1, _track2);
+            Assert.That(Math.Round(_track2.Course), Is.EqualTo(270));
+        }
+
+        [Test]
+        public void CalcCourse_East_CourseOK()
+        {
+            _track1.XCoordinate = 10000;
+            _track1.YCoordinate = 90000;
+            _track2.XCoordinate = 90000;
+            _track2.YCoordinate = 90000;
+
+            _uut.CalcCourse(_track1, _track2);
+            Assert.That(Math.Round(_track2.Course), Is.EqualTo(90));
+        }
     }
 }

@@ -13,11 +13,13 @@ namespace AirTrafficMonitoring
 
     public class ConvertStringToDateTime : IConvertStringToDateTime
     {
+        public DateTime DT { get; set; }
+
         public DateTime ConvertToDateTime(string dateString)
         {
-            var dt = DateTime.ParseExact(dateString, "yyyyMMddHHmmssfff", CultureInfo.InvariantCulture);
+            DT = DateTime.ParseExact(dateString, "yyyyMMddHHmmssfff", CultureInfo.InvariantCulture);
 
-            return dt;
+            return DT;
         }
     }
 }

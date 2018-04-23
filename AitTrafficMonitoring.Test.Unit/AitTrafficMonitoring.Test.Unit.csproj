@@ -63,9 +63,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalculateCourseUnitTest.cs" />
+    <Compile Include="FilterAirspaceUnitTest.cs" />
     <Compile Include="ConvertStringToDateTimeUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeperationTracksUnitTests.cs" />
+    <Compile Include="SortingTracksUnitTest.cs" />
+    <Compile Include="VelocityUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AirTrafficMonitoring\AirTrafficMonitoring.csproj">

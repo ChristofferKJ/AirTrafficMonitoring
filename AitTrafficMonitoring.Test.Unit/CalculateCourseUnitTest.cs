@@ -14,15 +14,15 @@ namespace AitTrafficMonitoring.Test.Unit
     public class CalculateCourseUnitTest
     {
         private ICalculateCourse _uut;
-        private List<ITrack> _tracklist;
-        private ITrack _track1;
-        private ITrack _track2;
+        private List<Track> _tracklist;
+        private Track _track1;
+        private Track _track2;
 
         [SetUp]
         public void setup()
         {
             _uut = new CalculateCourse();
-            _tracklist = new List<ITrack>();
+            _tracklist = new List<Track>();
 
             _track1 = new Track
             {

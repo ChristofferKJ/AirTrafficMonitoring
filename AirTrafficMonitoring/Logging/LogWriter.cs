@@ -14,7 +14,13 @@ namespace AirTrafficMonitoring
         {
             string path = Directory.GetCurrentDirectory() + "LogFile.txt";
             string text = "Alarm! \nTag: " + tag1 + " and tag: " + tag2 + " is on a collision course \nTime: " + timeofOccurrence;
-            System.IO.File.WriteAllText(path, text);
+            File.WriteAllText(path, text);
+        }
+        public void UnlogEvent(string tag1, string tag2, DateTime timeofOccurrence)
+        {
+            string path = Directory.GetCurrentDirectory() + "LogFile.txt";
+            string text = "Tag: " + tag1 + " and tag: " + tag2 + " is no longer on a collision course \nTime: " + timeofOccurrence;
+            File.WriteAllText(path, text);
         }
     }
 }

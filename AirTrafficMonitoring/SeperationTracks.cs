@@ -7,14 +7,16 @@ using System.Threading.Tasks;
 namespace AirTrafficMonitoring
 {
     public class SeperationTracks : ISeperationTracks
-    {
-        private readonly ILogWriter _logWriterToFile;
-        private readonly ILogWriter _logWriterToConsole;
+    {   
+        private readonly SeperationEvent _seperationEvent;
+        private readonly IEventController _eventController;
+        private readonly List<SeperationEvent> _seperationList; 
 
-        public SeperationTracks(ILogWriter logWriterToFile, ILogWriter logWriterToConsole)
+        public SeperationTracks(SeperationEvent seperationEvent, IEventController eventController)
         {
-            _logWriterToFile = logWriterToFile;
-            _logWriterToConsole = logWriterToConsole;
+            _seperationEvent = seperationEvent;
+            _eventController = eventController;
+            _seperationList = new List<SeperationEvent>();
         }
 
         public void SeperationCheck(List<Track> trackList)
@@ -40,9 +42,13 @@ namespace AirTrafficMonitoring
                             var timeOfOccurrence = trackList[i].Timestamp > trackList[n].Timestamp
                                 ? trackList[i].Timestamp
                                 : trackList[n].Timestamp;
+                                                     
+                                _seperationEvent.Tag1 = trackList[i].Tag;
+                                _seperationEvent.Tag2 = trackList[n].Tag;
+                                _seperationEvent.TimeOfOccurrence = timeOfOccurrence;
 
-                            _logWriterToFile.LogEvent(trackList[i].Tag, trackList[n].Tag, timeOfOccurrence);
-                            _logWriterToConsole.LogEvent(trackList[i].Tag, trackList[n].Tag, timeOfOccurrence);
+                                _seperationList.Add(_seperationEvent);
+                                _eventController.seperationsDetected(_seperationList);                          
                         }
                     }
                 }

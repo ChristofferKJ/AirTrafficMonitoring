@@ -46,6 +46,8 @@
     <Compile Include="Calculating\CalculateCourse.cs" />
     <Compile Include="Calculating\CalculateVelocity.cs" />
     <Compile Include="Converting\IConvertStringToDateTime.cs" />
+    <Compile Include="EventController.cs" />
+    <Compile Include="Interfaces\IEventController.cs" />
     <Compile Include="Logging\ConsoleSeperation.cs" />
     <Compile Include="Logging\ConsoleWriter.cs" />
     <Compile Include="Converting\ConvertStringToDateTime.cs" />
@@ -60,6 +62,7 @@
     <Compile Include="Interfaces\ISortingTracks.cs" />
     <Compile Include="Interfaces\IWriter.cs" />
     <Compile Include="Logging\LogWriter.cs" />
+    <Compile Include="SeperationEvent.cs" />
     <Compile Include="SeperationTracks.cs" />
     <Compile Include="SortingTracks.cs" />
     <Compile Include="Track.cs" />

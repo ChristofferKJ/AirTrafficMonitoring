@@ -14,39 +14,34 @@ namespace AitTrafficMonitoring.Test.Unit
     public class CalculateCourseUnitTest
     {
         private ICalculateCourse _uut;
-        private List<Track> _tracklist;
         private Track _track1;
         private Track _track2;
 
         [SetUp]
-        public void setup()
+        public void Setup()
         {
             _uut = new CalculateCourse();
-            _tracklist = new List<Track>();
 
             _track1 = new Track
             {
                 Tag = "BIJ515",
-                XCoordinate = 65884,
-                YCoordinate = 21948
-
+                XCoordinate = 90000,
+                YCoordinate = 90000
             };
+
             _track2 = new Track
             {
                 Tag = "BIJ515",
-                XCoordinate = 75884,
-                YCoordinate = 31948
+                XCoordinate = 10000,
+                YCoordinate = 10000
             };
-
         }
-        [Test]
-        public void CalcCourse_jfjf_kkfk()
-        {
-            _tracklist.Add(_track1);
-            _tracklist.Add(_track2);
-            //_uut.CalcCourse(_tracklist);
-            Assert.That(_tracklist[1].Course,Is.EqualTo(315));
 
+        [Test]
+        public void CalcCourse_SouthWest_CourseOK()
+        {
+            _uut.CalcCourse(_track1,_track2);
+            Assert.That(Math.Round(_track2.Course),Is.EqualTo(225));
         }
     }
 }

@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="Calculating\CalculateCourse.cs" />
     <Compile Include="Calculating\CalculateVelocity.cs" />
-    <Compile Include="Converting\IConvertStringToDateTime.cs" />
+    <Compile Include="Interfaces\IConvertStringToDateTime.cs" />
     <Compile Include="Logging\ConsoleSeperation.cs" />
     <Compile Include="Logging\ConsoleWriter.cs" />
     <Compile Include="Converting\ConvertStringToDateTime.cs" />

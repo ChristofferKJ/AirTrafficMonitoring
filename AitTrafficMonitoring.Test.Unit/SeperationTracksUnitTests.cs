@@ -13,7 +13,6 @@ namespace AitTrafficMonitoring.Test.Unit
     [TestFixture]
     class SeperationTracksUnitTests
     {
-
         private ISeperationTracks _uut;
         private ILogWriter _logWriterToFile;
         private ILogWriter _logWriterToConsole;

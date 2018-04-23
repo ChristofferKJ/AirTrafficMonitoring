@@ -44,7 +44,7 @@ namespace AitTrafficMonitoring.Test.Unit
         {
             _tracklist.Add(_track1);
             _tracklist.Add(_track2);
-           // _uut.CalcCourse(_tracklist);
+
             Assert.That(_tracklist[1].Course,Is.EqualTo(315));
 
         }

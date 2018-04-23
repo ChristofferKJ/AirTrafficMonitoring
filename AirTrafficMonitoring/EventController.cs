@@ -23,12 +23,19 @@ namespace AirTrafficMonitoring
         {
             for (var i = 0; i < newSeperationEvents.Count; i++)
             {
+                if (_currentSeperationEvents.Count == 0)
+                {
+                    _logWriterToFile.LogEvent(newSeperationEvents[i].Tag1, newSeperationEvents[i].Tag2, newSeperationEvents[i].TimeOfOccurrence);
+                    _logWriterToConsole.LogEvent(newSeperationEvents[i].Tag1, newSeperationEvents[i].Tag2, newSeperationEvents[i].TimeOfOccurrence);
+
+                }
                 for (int j = 0; j < _currentSeperationEvents.Count; j++)
                 {
-                    if (newSeperationEvents!=_currentSeperationEvents)
+                    if (newSeperationEvents[i].Tag1 != _currentSeperationEvents[j].Tag1 && newSeperationEvents[i].Tag2 != _currentSeperationEvents[j].Tag2)
                     {
                         _logWriterToFile.LogEvent(newSeperationEvents[i].Tag1, newSeperationEvents[i].Tag2, newSeperationEvents[i].TimeOfOccurrence);
                         _logWriterToConsole.LogEvent(newSeperationEvents[i].Tag1, newSeperationEvents[i].Tag2, newSeperationEvents[i].TimeOfOccurrence);
+
                         _logWriterToFile.UnlogEvent(_currentSeperationEvents[j].Tag1, _currentSeperationEvents[j].Tag2,
                             _currentSeperationEvents[j].TimeOfOccurrence);
                         _logWriterToConsole.UnlogEvent(_currentSeperationEvents[j].Tag1, _currentSeperationEvents[j].Tag2,

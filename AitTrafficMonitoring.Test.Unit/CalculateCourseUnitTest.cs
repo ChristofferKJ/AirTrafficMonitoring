@@ -14,39 +14,94 @@ namespace AitTrafficMonitoring.Test.Unit
     public class CalculateCourseUnitTest
     {
         private ICalculateCourse _uut;
-        private List<Track> _tracklist;
         private Track _track1;
         private Track _track2;
 
         [SetUp]
-        public void setup()
+        public void Setup()
         {
             _uut = new CalculateCourse();
-            _tracklist = new List<Track>();
 
             _track1 = new Track
             {
                 Tag = "BIJ515",
-                XCoordinate = 65884,
-                YCoordinate = 21948
-
+                XCoordinate = 90000,
+                YCoordinate = 90000
             };
+
             _track2 = new Track
             {
                 Tag = "BIJ515",
-                XCoordinate = 75884,
-                YCoordinate = 31948
+                XCoordinate = 10000,
+                YCoordinate = 10000
             };
-
         }
+
         [Test]
-        public void CalcCourse_jfjf_kkfk()
+        public void CalcCourse_SouthWest_CourseOK()
         {
-            _tracklist.Add(_track1);
-            _tracklist.Add(_track2);
+            _uut.CalcCourse(_track1,_track2);
+            Assert.That(Math.Round(_track2.Course),Is.EqualTo(225));
+        }
 
-            Assert.That(_tracklist[1].Course,Is.EqualTo(315));
+        [Test]
+        public void CalcCourse_NorthEast_CourseOK()
+        {
+            _track1.XCoordinate = 10000;
+            _track1.YCoordinate = 10000;
+            _track2.XCoordinate = 90000;
+            _track2.YCoordinate = 90000;
 
+            _uut.CalcCourse(_track1, _track2);
+            Assert.That(Math.Round(_track2.Course), Is.EqualTo(45));
+        }
+
+        [Test]
+        public void CalcCourse_North_CourseOK()
+        {
+            _track1.XCoordinate = 10000;
+            _track1.YCoordinate = 10000;
+            _track2.XCoordinate = 10000;
+            _track2.YCoordinate = 90000;
+
+            _uut.CalcCourse(_track1, _track2);
+            Assert.That(Math.Round(_track2.Course), Is.EqualTo(0));
+        }
+
+        [Test]
+        public void CalcCourse_South_CourseOK()
+        {
+            _track1.XCoordinate = 10000;
+            _track1.YCoordinate = 90000;
+            _track2.XCoordinate = 10000;
+            _track2.YCoordinate = 10000;
+
+            _uut.CalcCourse(_track1, _track2);
+            Assert.That(Math.Round(_track2.Course), Is.EqualTo(180));
+        }
+
+        [Test]
+        public void CalcCourse_West_CourseOK()
+        {
+            _track1.XCoordinate = 90000;
+            _track1.YCoordinate = 90000;
+            _track2.XCoordinate = 10000;
+            _track2.YCoordinate = 90000;
+
+            _uut.CalcCourse(_track1, _track2);
+            Assert.That(Math.Round(_track2.Course), Is.EqualTo(270));
+        }
+
+        [Test]
+        public void CalcCourse_East_CourseOK()
+        {
+            _track1.XCoordinate = 10000;
+            _track1.YCoordinate = 90000;
+            _track2.XCoordinate = 90000;
+            _track2.YCoordinate = 90000;
+
+            _uut.CalcCourse(_track1, _track2);
+            Assert.That(Math.Round(_track2.Course), Is.EqualTo(90));
         }
     }
 }

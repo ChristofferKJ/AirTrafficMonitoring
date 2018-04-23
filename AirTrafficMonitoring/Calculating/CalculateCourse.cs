@@ -8,25 +8,25 @@ namespace AirTrafficMonitoring
 {
     public class CalculateCourse : ICalculateCourse
     {
-
         public void CalcCourse(Track track1, Track track2)
         {
-           double deltaXCoordinate = track2.XCoordinate - track1.XCoordinate;
-           double deltaYCoordinate = track2.YCoordinate - track1.YCoordinate;
+            double deltaXCoordinate = track2.XCoordinate - track1.XCoordinate;
+            double deltaYCoordinate = track2.YCoordinate - track1.YCoordinate;
+            double degrees = 0;
 
-           double radians = Math.Atan(deltaYCoordinate/ deltaXCoordinate);
-           double degrees = radians / (180 / Math.PI);
-
-            if (deltaXCoordinate < 0 || deltaYCoordinate < 0)
-                degrees += 180;
-            if (deltaXCoordinate > 0 && deltaYCoordinate < 0)
-                degrees -= 180;
-            if (degrees <0 )
+            if (deltaXCoordinate == 0)
             {
-                degrees += 360;
+                degrees = deltaYCoordinate > 0 ? 0 : 180;
             }
-            
-           track2.Course = degrees;
+            else
+            {
+                double radians = Math.Atan2(deltaYCoordinate, deltaXCoordinate);
+                degrees = radians / Math.PI * 180;
+
+                degrees = 90 - degrees;
+                if (degrees < 0) degrees += 360;
+            }
+            track2.Course = degrees;
         }
     }
 }

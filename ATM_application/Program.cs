@@ -18,7 +18,7 @@ namespace ATM_application
             ICalculateCourse calculateCourse = new CalculateCourse();
             IWriter writer = new ConsoleWriter();
             ILogWriter logWriterToFile = new LogWriter();
-            ILogWriter logWriterToConsole = new LogWriter();
+            ILogWriter logWriterToConsole = new ConsoleSeperation();
             SeperationEvent seperationEvent = new SeperationEvent();
             IEventController eventController = new EventController(logWriterToFile,logWriterToConsole);
             ISeperationTracks seperationTracks = new SeperationTracks(seperationEvent, eventController);

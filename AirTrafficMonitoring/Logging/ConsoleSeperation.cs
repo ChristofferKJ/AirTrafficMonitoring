@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AirTrafficMonitoring
 {
-    class ConsoleSeperation : ILogWriter
+    public class ConsoleSeperation : ILogWriter
     { 
         public void LogEvent(string tag1, string tag2, DateTime timeofOccurrence)
         {

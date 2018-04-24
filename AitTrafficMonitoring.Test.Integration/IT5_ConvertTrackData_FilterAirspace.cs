@@ -27,6 +27,7 @@ namespace AitTrafficMonitoring.Test.Integration
         private ILogWriter _logWriterToConsole;
         private SeperationEvent _seperationEvent;
         private List<string> _myList;
+        private RawTransponderDataEventArgs _eventArgs;
 
         [SetUp]
         public void SetUp()
@@ -45,18 +46,33 @@ namespace AitTrafficMonitoring.Test.Integration
             _filterAirspace = new FilterAirspace(_sortingTracks);
             _convertTrackData = new ConvertTrackData(_transponderReceiver,_convertStringToDateTime,_filterAirspace);
 
-            var track = "BIJ515;12345;54321;17891;20180409153742853";
-            _myList = new List<string> {track};
+            _myList = new List<string>();
 
-            var eventArgs = new RawTransponderDataEventArgs(_myList);
-
-            _transponderReceiver.TransponderDataReady += Raise.EventWith(eventArgs);
+            _eventArgs = new RawTransponderDataEventArgs(_myList);
         }
 
         [Test]
         public void TransponderDataReady_TrackInAirspace_ResultOK()
         {
-           // _filterAirspace.FilterTrack();
+            string trackInAirspace = "BIJ515;12345;54321;17891;20180409153742853";
+
+            _myList.Add(trackInAirspace);
+
+            _transponderReceiver.TransponderDataReady += Raise.EventWith(_eventArgs);
+
+            _writer.Received().WriteTrack(Arg.Is<Track>((x) => x.Tag == "BIJ515"));
+        }
+
+        [Test]
+        public void TransponderDataReady_TrackNotInAirspace_ResultOK()
+        {
+            string trackOutOfAirspace = "BIJ515;90001;54321;17891;20180409153742853";
+
+            _myList.Add(trackOutOfAirspace);
+
+            _transponderReceiver.TransponderDataReady += Raise.EventWith(_eventArgs);
+
+            _writer.DidNotReceive().WriteTrack(Arg.Any<Track>());
         }
     }
 }

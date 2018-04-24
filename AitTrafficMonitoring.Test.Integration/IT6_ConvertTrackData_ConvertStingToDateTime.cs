@@ -54,9 +54,69 @@ namespace AitTrafficMonitoring.Test.Integration
         }
 
         [Test]
-        public void TransponderDataReady_TrackConversion_ResultOK()
+        public void TransponderDataReady_Tag_ResultOK()
         {
-            Assert.That(_convertStringToDateTime.DT.Year, Is.EqualTo(2018));
+            _writer.Received().WriteTrack(Arg.Is<Track>((x) => x.Tag == "BIJ515"));
+        }
+
+        [Test]
+        public void TransponderDataReady_XCoordinate_ResultOK()
+        {
+            _writer.Received().WriteTrack(Arg.Is<Track>((x) => x.XCoordinate == 12345));
+        }
+
+        [Test]
+        public void TransponderDataReady_YCoordinate_ResultOK()
+        {
+            _writer.Received().WriteTrack(Arg.Is<Track>((x) => x.YCoordinate == 54321));
+        }
+
+        [Test]
+        public void TransponderDataReady_Altitude_ResultOK()
+        {
+            _writer.Received().WriteTrack(Arg.Is<Track>((x) => x.Altitude == 17891));
+        }
+
+        [Test]
+        public void TransponderDataReady_Year_ResultOK()
+        {
+            _writer.Received().WriteTrack(Arg.Is<Track>((x) => x.Timestamp.Year == 2018));
+        }
+
+        [Test]
+        public void TransponderDataReady_Month_ResultOK()
+        {
+            _writer.Received().WriteTrack(Arg.Is<Track>((x) => x.Timestamp.Month == 04));
+        }
+
+        [Test]
+        public void TransponderDataReady_Day_ResultOK()
+        {
+            _writer.Received().WriteTrack(Arg.Is<Track>((x) => x.Timestamp.Day == 09));
+        }
+
+        [Test]
+        public void TransponderDataReady_Hour_ResultOK()
+        {
+            _writer.Received().WriteTrack(Arg.Is<Track>((x) => x.Timestamp.Hour == 15));
+        }
+
+        [Test]
+        public void TransponderDataReady_Minutes_ResultOK()
+        {
+            _writer.Received().WriteTrack(Arg.Is<Track>((x) => x.Timestamp.Minute == 37));
+        }
+
+        [Test]
+        public void TransponderDataReady_Seconds_ResultOK()
+        {
+            _writer.Received().WriteTrack(Arg.Is<Track>((x) => x.Timestamp.Second == 42));
+        }
+
+        [Test]
+        public void TransponderDataReady_Milliseconds_ResultOK()
+        {
+            _writer.Received().WriteTrack(Arg.Is<Track>((x) => x.Timestamp.Millisecond == 853));
         }
     }
 }

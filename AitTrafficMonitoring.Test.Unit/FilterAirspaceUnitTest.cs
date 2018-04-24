@@ -35,7 +35,6 @@ namespace AitTrafficMonitoring.Test.Unit
             _uut.FilterTrack(_tracklist);
 
             _tracklist.Count.Equals(1);
-
         }
 
         [Test]

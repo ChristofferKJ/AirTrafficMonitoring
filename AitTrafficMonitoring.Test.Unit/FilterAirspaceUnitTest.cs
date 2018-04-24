@@ -34,7 +34,7 @@ namespace AitTrafficMonitoring.Test.Unit
 
             _uut.FilterTrack(_tracklist);
 
-            _tracklist.Count.Equals(1);
+            Assert.That(_tracklist.Count,Is.EqualTo(1));
         }
 
         [Test]
@@ -46,7 +46,7 @@ namespace AitTrafficMonitoring.Test.Unit
 
             _uut.FilterTrack(_tracklist);
 
-            _tracklist.Count.Equals(1);
+            Assert.That(_tracklist.Count, Is.EqualTo(1));
         }
 
         [Test]
@@ -58,42 +58,42 @@ namespace AitTrafficMonitoring.Test.Unit
 
             _uut.FilterTrack(_tracklist);
 
-            _tracklist.Count.Equals(0);
+            Assert.That(_tracklist.Count, Is.EqualTo(1));
         }
 
         [Test]
         public void FilterTrack_YIsToLow_TrackDeleted()
         {
-            _track = new Track { XCoordinate = 10001, YCoordinate = 10000, Altitude = 501 };
+            _track = new Track { XCoordinate = 10001, YCoordinate = 9999, Altitude = 501 };
 
             _tracklist.Add(_track);
 
             _uut.FilterTrack(_tracklist);
 
-            _tracklist.Count.Equals(0);
+            Assert.That(_tracklist.Count, Is.EqualTo(0));
         }
         [Test]
         public void FilterTrack_AltIsToLow_TrackDeleted()
         {
-            _track = new Track { XCoordinate = 10001, YCoordinate = 10001, Altitude = 500 };
+            _track = new Track { XCoordinate = 10001, YCoordinate = 10001, Altitude = 499 };
 
             _tracklist.Add(_track);
 
             _uut.FilterTrack(_tracklist);
 
-            _tracklist.Count.Equals(0);
+            Assert.That(_tracklist.Count, Is.EqualTo(0));
         }
 
         [Test]
         public void FilterTrack_XIsToHigh_TrackDeleted()
         {
-            _track = new Track { XCoordinate = 90000, YCoordinate = 89999, Altitude = 19999 };
+            _track = new Track { XCoordinate = 90001, YCoordinate = 89999, Altitude = 19999 };
 
             _tracklist.Add(_track);
 
             _uut.FilterTrack(_tracklist);
 
-            _tracklist.Count.Equals(0);
+            Assert.That(_tracklist.Count, Is.EqualTo(0));
 
         }
 
@@ -101,26 +101,26 @@ namespace AitTrafficMonitoring.Test.Unit
         [Test]
         public void FilterTrack_YIsToHigh_TrackDeleted()
         {
-            _track = new Track { XCoordinate = 89999, YCoordinate = 90000, Altitude = 19999 };
+            _track = new Track { XCoordinate = 89999, YCoordinate = 90001, Altitude = 19999 };
 
             _tracklist.Add(_track);
 
             _uut.FilterTrack(_tracklist);
 
-            _tracklist.Count.Equals(0);
+            Assert.That(_tracklist.Count, Is.EqualTo(0));
 
         }
 
         [Test]
         public void FilterTrack_AltIsToHigh_TrackDeleted()
         {
-            _track = new Track { XCoordinate = 89999, YCoordinate = 89999, Altitude = 20000 };
+            _track = new Track { XCoordinate = 89999, YCoordinate = 89999, Altitude = 20001 };
 
             _tracklist.Add(_track);
 
             _uut.FilterTrack(_tracklist);
 
-            _tracklist.Count.Equals(0);
+            Assert.That(_tracklist.Count, Is.EqualTo(0));
 
         }
 

@@ -26,7 +26,7 @@ namespace AitTrafficMonitoring.Test.Unit
         [SetUp]
         public void Setup()
         {
-            _convertStringToDateTime = Substitute.For<IConvertStringToDateTime>();
+            _convertStringToDateTime = new ConvertStringToDateTime();
             _filterAirspace = Substitute.For<IFilterAirspace>();
             _transponderReceiver = Substitute.For<ITransponderReceiver>();
             _uut = new ConvertTrackData(_transponderReceiver, _convertStringToDateTime, _filterAirspace);
